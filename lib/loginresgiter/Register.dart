@@ -16,6 +16,7 @@ import 'package:kaamkhoj/policies/terms_&_condition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import 'package:validators/validators.dart';
+import '../main.dart';
 import 'data.dart';
 
 // import 'package:firebase_auth/firebase_auth.dart';
@@ -296,7 +297,7 @@ class _RegisterPageState extends State<RegisterPage> {
 //    addStringToSF();
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
+      MaterialPageRoute(builder: (context) => MyApp("Login")),
     );
   }
 

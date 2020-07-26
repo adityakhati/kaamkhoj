@@ -60,7 +60,7 @@ class HowWeWorkPage extends StatelessWidget {
   launchWhatsapp() async {
     await launch(
 //               "https://api.whatsapp.com/send?phone=+917977763205?text=Helo"),
-        "https://wa.me/+917977763205?text=Hi");
+        "https://wa.me/+919820108341?text=Hi");
   }
 
   Widget _buildTitle() {

@@ -50,6 +50,7 @@ class _PartnerUsPageState extends State<PartnerUsPage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String phoneNo1 = prefs.getString('Login');
+    print(phoneNo1);
     await databaseReference
         .collection("data")
         .document(phoneNo1)
@@ -496,8 +497,18 @@ class _PartnerUsPageState extends State<PartnerUsPage> {
                         ),
                       )
                     : Container()),
-                _button()
-              ],
+
+                (circularProgress
+                    ? Padding(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Center(
+                      child: CircularProgressIndicator(
+                          valueColor:
+                          new AlwaysStoppedAnimation<Color>(
+                              Color.fromARGB(
+                                  0xff, 0x88, 0x02, 0x0b)))),
+                )
+                    : _button()),              ],
             )),
           ),
         ),
