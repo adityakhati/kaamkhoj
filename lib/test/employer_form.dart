@@ -550,6 +550,15 @@ class RadioButtonWidget extends State {
                             ),
                           ),
                         ),
+                        (errorEmail != ''
+                            ? Padding(
+                                padding: const EdgeInsets.only(left: 85.0),
+                                child: Text(
+                                  errorEmail,
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              )
+                            : Container()),
                         Padding(
                           padding: EdgeInsets.only(top: 15, bottom: 10),
                           child: Center(
