@@ -39,7 +39,7 @@ class MyHomePage extends StatelessWidget {
     );
     final PdfImage signature = PdfImage.file(
       pdf.document,
-      bytes: (await rootBundle.load('assets/images/signature.png'))
+      bytes: (await rootBundle.load('assets/images/Capture.png'))
           .buffer
           .asUint8List(),
     );
@@ -125,13 +125,12 @@ class MyHomePage extends StatelessWidget {
                           pw.Text("Bank Name: Yes Bank"),
                           pw.Text("Beneficiary Name: kaamkhojin"),
                           pw.Text("Branch: Parel( Mumbai)"),
-                          pw.Container(
-                            height: 50,
-                            width: 50,
-                            // padding: const pw.EdgeInsets.only(top: 10),
-                            alignment: pw.Alignment.topLeft,
-                            child: pw.Image(signature),
-                          ),
+                          // pw.Container(
+                          //   height: 100,
+                          //   // padding: const pw.EdgeInsets.only(top: 10),
+                          //   alignment: pw.Alignment.topLeft,
+                          //   child: pw.Image(signature),
+                          // ),
                         ]))
               ]))
         ];
@@ -169,7 +168,7 @@ class MyHomePage extends StatelessWidget {
 
     print("Iniside Aditya");
 
-    sendMailReceipt("kuldeep.c@somaiya.edu", file);
+    // sendMailReceipt("kuldeep.c@somaiya.edu", file);
   }
 
   Widget build(BuildContext context) {
