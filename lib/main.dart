@@ -13,6 +13,7 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'Mail/send_mail.dart';
 import 'NavigatorPages/navigatorPage.dart';
+import 'testpdf.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,13 +22,13 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  runApp(
-    MaterialApp(
-        theme: new ThemeData(
-          primaryColor: Color.fromARGB(0xff, 0x88, 0x02, 0x0b),
-        ),
-        home: token == null ? MyApp("Login") : MyApp("Navigator")),
-  );
+  runApp(MaterialApp(
+    theme: new ThemeData(
+      primaryColor: Color.fromARGB(0xff, 0x88, 0x02, 0x0b),
+    ),
+    home: PdfGenerator(),
+    // home: token == null ? MyApp("Login") : MyApp("Navigator")),
+  ));
 }
 
 class MyApp extends StatefulWidget {
