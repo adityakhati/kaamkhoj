@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kaamkhoj/Mail/send_mail.dart';
 import 'package:kaamkhoj/test/employee_form1.dart';
 import 'package:kaamkhoj/test/employer_form.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,12 +9,13 @@ import 'package:toast/toast.dart';
 class ChooseYourWorkEmployer extends StatefulWidget {
   String type, phoneNo;
 
-  ChooseYourWorkEmployer(String type) {
-    this.type = type;
-  }
 
+    ChooseYourWorkEmployer(String work, String phoneNo) {
+      this.type = work;
+      this.phoneNo = phoneNo;
+    }
   @override
-  ChooseYourWorkState createState() => ChooseYourWorkState(type);
+  ChooseYourWorkState createState() => ChooseYourWorkState(type,phoneNo);
 }
 
 class User {
@@ -91,14 +90,15 @@ class ChooseYourWorkState extends State<ChooseYourWorkEmployer> {
 
   String errorMsg = "";
 
-  ChooseYourWorkState(String type) {
+  ChooseYourWorkState(String type,String phoneNo) {
     this.type = type;
+    this.phoneNo = phoneNo;
   }
 
   @override
   void initState() {
     super.initState();
-    getStringValuesSF();
+//    getStringValuesSF();
     selectedRadio = 0;
     selectedRadioTile = 0;
     users = User.getUsers();
@@ -227,6 +227,7 @@ class ChooseYourWorkState extends State<ChooseYourWorkEmployer> {
                       duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
                 } else {
                   if (type == "Employer") {
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(

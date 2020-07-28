@@ -33,14 +33,14 @@ dependencies:
   carousel_pro: ^1.0.0
   google_fonts: ^1.0.0
   url_launcher: ^5.4.0
-  flutter_typeahead: ^1.8.1
+
   validators: ^2.0.0+1
 
   pdf: ^1.5.0
   flutter_full_pdf_viewer: ^1.0.6
 
   firebase_auth:
-  firebase_database: ^3.0.7
+#  firebase_database: ^3.0.7
   cloud_firestore:
   share: ^0.6.4+1
   onesignal_flutter: ^2.4.1

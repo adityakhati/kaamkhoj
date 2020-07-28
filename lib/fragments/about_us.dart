@@ -39,16 +39,6 @@ class AboutUsPage extends StatelessWidget {
     );
   }
 
-  // Widget _buildTitle(){
-  //   return Container(margin: EdgeInsets.only(top:10),
-  //   child: Center(
-  //     child: Text('About Us',
-  //     style: GoogleFonts.openSans(
-  //                     color: Color.fromARGB(0xff, 0x88, 0x02, 0x0b),
-  //                     fontSize: 38,
-  //                     fontWeight: FontWeight.bold)),
-  //   ),);
-  // }
   Widget _carousel(BuildContext context) {
     return SizedBox(
         height: 300.0,

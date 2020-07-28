@@ -317,8 +317,8 @@ class PaymentSuccessfulScreenState extends State<PaymentSuccessfulScreen> {
 
   getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    phoneNo = prefs.getString('Login');
-    email = prefs.getString('Email');
+    phoneNo =  prefs.getString('Login');
+    email =  prefs.getString('Email');
 
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('kk:mm:ss EEE d MMM yyyy').format(now);

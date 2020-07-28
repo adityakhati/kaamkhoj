@@ -4,6 +4,7 @@ import 'package:kaamkhoj/NavigatorPages/navigatorPage.dart';
 import 'package:kaamkhoj/paytmPayment/PaymentPaytmPage.dart';
 
 class PaymentPage extends StatelessWidget {
+
   var font1 = GoogleFonts.openSans(
       color: Color.fromARGB(0xff, 0x88, 0x02, 0x0b),
       fontSize: 18,
@@ -24,7 +25,6 @@ class PaymentPage extends StatelessWidget {
       onWillPop: _onBackPressed,
       child: SafeArea(
         child: Scaffold(
-
             body: Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,

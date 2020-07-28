@@ -9,12 +9,13 @@ import 'package:toast/toast.dart';
 class ChooseYourWork extends StatefulWidget {
   String type, phoneNo;
 
-  ChooseYourWork(String type) {
+  ChooseYourWork(String type,String phoneNo) {
     this.type = type;
+    this.phoneNo = phoneNo;
   }
 
   @override
-  ChooseYourWorkState createState() => ChooseYourWorkState(type);
+  ChooseYourWorkState createState() => ChooseYourWorkState(type,phoneNo);
 }
 
 class User {
@@ -90,14 +91,15 @@ class ChooseYourWorkState extends State<ChooseYourWork> {
 
   String errorMsg = "";
 
-  ChooseYourWorkState(String type) {
+  ChooseYourWorkState(String type,String phoneNo) {
     this.type = type;
+    this.phoneNo = phoneNo;
   }
 
   @override
   void initState() {
     super.initState();
-    getStringValuesSF();
+//    getStringValuesSF();
     selectedRadio = 0;
     selectedRadioTile = 0;
     users = User.getUsers();

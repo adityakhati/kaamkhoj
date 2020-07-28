@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaamkhoj/Mail/send_mail.dart';
@@ -11,20 +10,25 @@ import 'package:kaamkhoj/Mail/sms_.dart';
 import 'package:kaamkhoj/internetconnection/checkInternetConnection.dart';
 import 'package:kaamkhoj/pincode/pincode.dart';
 import 'package:kaamkhoj/test/thankyouform.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intl/intl.dart';
 import 'package:toast/toast.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:kaamkhoj/loginresgiter/data.dart';
 import 'package:validators/validators.dart';
 import 'package:kaamkhoj/NavigatorPages/navigatorPage.dart';
 
 class PartnerUsPage extends StatefulWidget {
+  String phoneNo;
+
+  PartnerUsPage(String phoneNo) {
+    this.phoneNo = phoneNo;
+  }
+
   @override
-  _PartnerUsPageState createState() => _PartnerUsPageState();
+  _PartnerUsPageState createState() => _PartnerUsPageState(phoneNo);
 }
 
 class _PartnerUsPageState extends State<PartnerUsPage> {
   String phoneNo = "", name = "", email = "", code = "";
+  String phoneNo1;
   final databaseReference = Firestore.instance;
 
   String errorName = '';
@@ -39,18 +43,22 @@ class _PartnerUsPageState extends State<PartnerUsPage> {
   int _counter;
   Timer _timer;
 
-
   bool circularProgress = false;
 
   String cityName = "";
 
   String areaName = "";
 
-  Future<String> getStringValuesSF() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    //Return String
-    String phoneNo1 = prefs.getString('Login');
-    print(phoneNo1);
+  _PartnerUsPageState(String phoneNo1) {
+    this.phoneNo1 = phoneNo1;
+  }
+
+  createRecord() async{
+
+
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('kk:mm:ss EEE d MMM yyyy').format(now);
+
     await databaseReference
         .collection("data")
         .document(phoneNo1)
@@ -60,10 +68,11 @@ class _PartnerUsPageState extends State<PartnerUsPage> {
       'Number': phoneNo,
       'Name': name,
       'email': email,
-      'code': code,
       'pincode': code,
       'area': areaName,
       'city': cityName,
+      'Date': formattedDate,
+
     });
 
     getMail(phoneNo1);
@@ -126,7 +135,6 @@ class _PartnerUsPageState extends State<PartnerUsPage> {
           errorMobile == "" &&
           errorCode == "") {
         _startTimer();
-
       } else {
         setState(() {
           circularProgress = false;
@@ -136,7 +144,6 @@ class _PartnerUsPageState extends State<PartnerUsPage> {
       }
     }
   }
-
 
   _startTimer() {
     _counter = 02;
@@ -149,7 +156,7 @@ class _PartnerUsPageState extends State<PartnerUsPage> {
           _counter--;
         } else {
           _timer.cancel();
-          getStringValuesSF();
+          createRecord();
         }
       });
     });
@@ -497,18 +504,16 @@ class _PartnerUsPageState extends State<PartnerUsPage> {
                         ),
                       )
                     : Container()),
-
                 (circularProgress
                     ? Padding(
-                  padding: EdgeInsets.only(top: 20),
-                  child: Center(
-                      child: CircularProgressIndicator(
-                          valueColor:
-                          new AlwaysStoppedAnimation<Color>(
-                              Color.fromARGB(
-                                  0xff, 0x88, 0x02, 0x0b)))),
-                )
-                    : _button()),              ],
+                        padding: EdgeInsets.only(top: 20),
+                        child: Center(
+                            child: CircularProgressIndicator(
+                                valueColor: new AlwaysStoppedAnimation<Color>(
+                                    Color.fromARGB(0xff, 0x88, 0x02, 0x0b)))),
+                      )
+                    : _button()),
+              ],
             )),
           ),
         ),

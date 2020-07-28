@@ -51,6 +51,7 @@ class NavigatorPage extends StatefulWidget {
 
 class NavigatorPageState extends State<NavigatorPage> {
   String name = "";
+  String phoneNo="";
 
   bool logot_select = false;
 
@@ -65,9 +66,13 @@ class NavigatorPageState extends State<NavigatorPage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     //Return String
     String stringValue = prefs.getString('Name');
+    String phoneNo1 = prefs.getString('Login');
+
     setState(() {
       name = stringValue;
+      phoneNo=phoneNo1;
     });
+
   }
 
   int _selectedDrawerIndex = 0;
@@ -92,11 +97,14 @@ class NavigatorPageState extends State<NavigatorPage> {
         return new RateCard();
 
       case 7:
-        return new PartnerUsPage();
+        print(phoneNo);
+        return new PartnerUsPage(phoneNo);
       case 8:
-        return new ChooseYourWorkEmployer("Employer");
+        print(phoneNo);
+        return new ChooseYourWorkEmployer("Employer",phoneNo);
       case 9:
-        return new ChooseYourWork("Employee");
+        print(phoneNo);
+        return new ChooseYourWork("Employee",phoneNo);
       case 10:
         return new ContactUsPage();
       case 11:

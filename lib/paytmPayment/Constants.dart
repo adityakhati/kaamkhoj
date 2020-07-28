@@ -1,6 +1,5 @@
 const PAYMENT_URL = "https://us-central1-kaamkhoj-8f570.cloudfunctions.net/customFunctions/payment";
 
-//const PAYMENT_URL = "http://192.168.0.104:5001/kaamkhoj-8f570/us-central1/customFunctions/payment";
 
 const ORDER_DATA = {
   "custID": "USER_112233444545",

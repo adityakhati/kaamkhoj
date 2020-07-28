@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kaamkhoj/NavigatorPages/navigatorPage.dart';
 import 'package:kaamkhoj/loginresgiter/Register.dart';
 class TermsConditionPage extends StatelessWidget {
   var font1 = GoogleFonts.sourceSansPro(

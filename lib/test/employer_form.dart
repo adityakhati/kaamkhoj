@@ -39,6 +39,7 @@ class Radiobutton extends StatefulWidget {
   Radiobutton(String work, String phoneNo) {
     this.work = work;
     this.phoneNo = phoneNo;
+
   }
 
   @override
@@ -73,6 +74,8 @@ class RadioButtonWidget extends State {
   }
 
   void createRecord() async {
+    print("createRecord"+phoneNo);
+
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('kk:mm:ss EEE d MMM yyyy').format(now);
     final databaseReference = Firestore.instance;
@@ -118,12 +121,12 @@ class RadioButtonWidget extends State {
         'Hrs': radioItemHrs,
         'Religion': radioItemReligion,
         'Work': work,
-        'City': city,
         'Email': email,
+        'Code': code,
         'Gender': radioItemGender,
         'Date': formattedDate,
         'area': areaName,
-        'city': cityName
+        'city': cityName,
       });
     }
     getMail(phoneNo);

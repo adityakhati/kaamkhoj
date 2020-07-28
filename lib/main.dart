@@ -13,7 +13,6 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'Mail/send_mail.dart';
 import 'NavigatorPages/navigatorPage.dart';
-import 'testpdf.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,8 +25,7 @@ Future<void> main() async {
     theme: new ThemeData(
       primaryColor: Color.fromARGB(0xff, 0x88, 0x02, 0x0b),
     ),
-    home: PdfGenerator(),
-    // home: token == null ? MyApp("Login") : MyApp("Navigator")),
+    home: token == null ? MyApp("Login") : MyApp("Navigator"),
   ));
 }
 

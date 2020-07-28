@@ -5,10 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kaamkhoj/afterlogin/dropdown.dart';
 import 'package:kaamkhoj/internetconnection/checkInternetConnection.dart';
 import 'package:kaamkhoj/loginresgiter/passwordchange.dart';
-import 'package:kaamkhoj/test/employer_form.dart';
 import 'package:toast/toast.dart';
 
 import 'Login.dart';

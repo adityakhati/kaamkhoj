@@ -1,13 +1,10 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kaamkhoj/NavigatorPages/navigatorPage.dart';
 import 'package:kaamkhoj/internetconnection/checkInternetConnection.dart';
 import 'package:kaamkhoj/loginresgiter/Login.dart';
 import 'package:kaamkhoj/pincode/pincode.dart';
@@ -17,16 +14,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 import 'package:validators/validators.dart';
 import '../main.dart';
-import 'data.dart';
 
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-
-//import 'package:kaamkhoj/afterlogin/dropdown.dart';
-import 'package:email_validator/email_validator.dart';
-
-// import 'package:kaamkhoj/homepage.dart';
-// import 'package:kaamkhoj/test/employer_form.dart';
 
 class RegisterPage extends StatefulWidget {
   final String lastPin;

@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:kaamkhoj/NavigatorPages/navigatorPage.dart';
 import 'package:kaamkhoj/loginresgiter/Register.dart';
 import 'package:url_launcher/url_launcher.dart';
 
