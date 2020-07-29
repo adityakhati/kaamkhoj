@@ -147,6 +147,8 @@ class PaymentSuccessfulScreenState extends State<PaymentSuccessfulScreen> {
   String email;
   String orderId, amt;
 
+  String gender,name,city,abb;
+
   PaymentSuccessfulScreenState(String orderId, String amt) {
     this.orderId = orderId;
     this.amt = amt;
@@ -222,8 +224,8 @@ class PaymentSuccessfulScreenState extends State<PaymentSuccessfulScreen> {
                             child: pw.Text("Invoice No." + orderId),
                           ),
                           pw.Text("To,"),
-                          pw.Text("   Mrs name"),
-                          pw.Text("   City"),
+                          pw.Text("   "+abb+" "+name),
+                          pw.Text("   "+city),
                           pw.Padding(padding: pw.EdgeInsets.only(top: 20)),
                           pw.Table.fromTextArray(
                               context: context,
@@ -319,15 +321,27 @@ class PaymentSuccessfulScreenState extends State<PaymentSuccessfulScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     phoneNo =  prefs.getString('Login');
     email =  prefs.getString('Email');
+    gender =  prefs.getString('Gender');
+    city =  prefs.getString('City');
+    name =  prefs.getString('Name');
+
+    if(gender=="Male"){
+      abb="Mr.";
+    }
+    else{
+      abb="Mrs.";
+    }
+
+    print(phoneNo);
 
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('kk:mm:ss EEE d MMM yyyy').format(now);
     createRecord(phoneNo, formattedDate);
 
-//    writeOnPdf(formattedDate);
-//    await savePdf(phoneNo,formattedDate,email);
+
     writeOnPdf(formattedDate);
     await savePdf();
+
     sendMail(phoneNo, formattedDate, email);
   }
 

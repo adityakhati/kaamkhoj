@@ -41,6 +41,9 @@ class _LoginPageState extends State<LoginPage> {
     documentReference.get().then((datasnapshot) async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('Name', datasnapshot['Name']);
+      prefs.setString('Gender', datasnapshot['Gender']);
+      prefs.setString('City', datasnapshot['city']);
+
       SignIn();
     });
   }

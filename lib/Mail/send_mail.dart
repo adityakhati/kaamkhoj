@@ -169,7 +169,7 @@ void sendMailReceipt(String tomail,File file1) {
 
     ..subject = 'Contacts of User from Kaamkhoj App'
     ..attachments.add(new Attachment(file: file1))
-    ..text = 'This is a cool email message. Whats up?'
+    ..text = ''
     ..html = '<h2>Hi Admin, </h2> <p>this is the mail has receipt of 1000</p>';
 
   // Email it.
@@ -228,12 +228,12 @@ void sendMailPaymentCust(String name, String phoneNo,String city,String orderId,
     ..from = 'Customercarekaamkhoj@gmail.com'
     ..recipients.add(tomail)
 
-    ..subject = 'Employer Details'
+    ..subject = 'Payment Successful'
     ..attachments.add(new Attachment(file: file1))
 
 //    ..attachments.add(new Attachment(file: new File('path/to/file')))
-    ..text = '<h2>Hello Admin,</h2>'
-    ..html = '<h2>Hello Admin,</h2><p>This is the data of user who has made a payment,</p><p>User Name: $name </p><p>User Phone Number: $phoneNo </p><p>User City: $city </p><p>OrderId: $orderId </p><p>Amount: $amt </p><p>Payemnt Date: $date </p>';
+    ..text = '<h2>Dear $name,</h2>'
+    ..html = '<h2>Dear $name,</h2><p>Thank you for the recent payment you have made to us. I hereby acknowledge receipt of payment which has been set against the following invoices.</p>';
 
   // Email it.
   emailTransport.send(envelope)
