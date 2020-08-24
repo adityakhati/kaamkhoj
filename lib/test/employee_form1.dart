@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kaamkhoj/Mail/send_mail.dart';
 import 'package:kaamkhoj/Mail/sms_.dart';
@@ -40,6 +41,8 @@ class Radiobutton extends StatefulWidget {
 
 class RadioButtonWidget extends State {
   String radioItemHrs = '';
+  String age = '';
+  String errorAge = '';
   String radioItemReligion = '';
   String work, phoneNo;
   final databaseReference = Firestore.instance;
@@ -67,6 +70,7 @@ class RadioButtonWidget extends State {
       'Religion': radioItemReligion,
       'Work': work,
       'Date': formattedDate,
+      'Age': age,
     });
     getMail(phoneNo);
     makeSmsRequest(phoneNo);
@@ -83,7 +87,7 @@ class RadioButtonWidget extends State {
     documentReference.get().then((datasnapshot) {
       sendMailEmployeeAdmin(
           datasnapshot.data['Name'].toString(),
-          datasnapshot.data['Age'].toString(),
+          age,
           datasnapshot.data['Gender'].toString(),
           phoneNo1,
           datasnapshot.data['city'].toString(),
@@ -121,6 +125,68 @@ class RadioButtonWidget extends State {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: 10, top: 15, bottom: 10),
+                        child: Center(
+                          child: Container(
+                            height: 55,
+                            child: TextField(
+                                maxLength: 2,
+                                inputFormatters: <TextInputFormatter>[
+                                  WhitelistingTextInputFormatter.digitsOnly,
+                                ],
+                                keyboardType: TextInputType.numberWithOptions(
+                                    decimal: true),
+                                decoration: InputDecoration(
+                                    hintStyle: GoogleFonts.poppins(
+                                        color: Color.fromARGB(
+                                            0xff, 0x1d, 0x22, 0x26),
+                                        fontSize: 14),
+                                    counterText: "",
+                                    focusedBorder: new OutlineInputBorder(
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(10.0),
+                                        ),
+                                        borderSide: BorderSide(
+                                          color: Colors.white70,
+                                        )),
+                                    enabledBorder: new OutlineInputBorder(
+                                      borderRadius: const BorderRadius.all(
+                                        const Radius.circular(10.0),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.white70,
+                                      ),
+                                    ),
+                                    filled: true,
+                                    fillColor: Colors.white70,
+                                    prefixIcon: Icon(Icons.refresh),
+                                    hintText: 'Age'),
+                                onChanged: (value) {
+                                  this.age = value.trim();
+
+                                  if (int.parse(age) < 18) {
+                                    setState(() {
+                                      errorAge = "Age must be 18 or older";
+                                    });
+                                  } else {
+                                    setState(() {
+                                      errorAge = "";
+                                    });
+                                  }
+                                }),
+                          ),
+                        ),
+                      ),
+                      (errorAge != ''
+                          ? Padding(
+                              padding: const EdgeInsets.only(left: 85.0),
+                              child: Text(
+                                errorAge,
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            )
+                          : Container()),
                       Container(
                         padding: EdgeInsets.only(left: 10),
                         child: Text(
@@ -358,14 +424,27 @@ class RadioButtonWidget extends State {
               onPressed: () {
                 check_internet().then((intenet) {
                   if (intenet != null && intenet) {
-                    if (radioItemHrs == '' || radioItemReligion == '') {
+                    if (radioItemHrs == '' ||
+                        radioItemReligion == '' ||
+                        age == '') {
                       Toast.show("Please fill all the fields", context,
                           duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+                      if (age == "") {
+                        setState(() {
+                          errorAge = "Please fill this field";
+                        });
+                      }
                     } else {
-                      createRecord();
-                      setState(() {
-                        circularProgress = true;
-                      });
+                      if (errorAge == '') {
+                        createRecord();
+                        setState(() {
+                          circularProgress = true;
+                        });
+                      } else {
+                        Toast.show(
+                            "Please fill all the fields correctly", context,
+                            duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+                      }
                     }
                   } else {
                     Toast.show(

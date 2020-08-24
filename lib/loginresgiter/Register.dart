@@ -45,7 +45,6 @@ class _RegisterPageState extends State<RegisterPage> {
   String phoneNo = "",
       name = "",
       radioItemGender = "",
-      age = "",
       email = "",
       password = "",
       city = "",
@@ -61,7 +60,6 @@ class _RegisterPageState extends State<RegisterPage> {
   String errorEmail = '';
   String errorGender = '';
   String errorMobile = '';
-  String errorAge = '';
   String errorPass = '';
   String errorCity = '';
   String errorCode = '';
@@ -69,7 +67,6 @@ class _RegisterPageState extends State<RegisterPage> {
   String smsOTP, type;
   String verificationId;
   String errorMessage = '';
-
 
   int _counter1;
   Timer _timer1;
@@ -275,7 +272,6 @@ class _RegisterPageState extends State<RegisterPage> {
   void createRecord() async {
     await databaseReference.collection("data").document(phoneNo).setData({
       'Number': phoneNo,
-      'Age': age,
       'Name': name,
       'Gender': radioItemGender,
       'password': password,
@@ -293,7 +289,6 @@ class _RegisterPageState extends State<RegisterPage> {
   addStringToSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('Login', phoneNo);
-
   }
 
   signIn(smsotp) async {
@@ -347,7 +342,6 @@ class _RegisterPageState extends State<RegisterPage> {
   void valid() {
     if ((name == "") ||
         (radioItemGender == "") ||
-        (age == "") ||
         (phoneNo == "") ||
         (password == "") ||
         (code == "")) {
@@ -363,11 +357,6 @@ class _RegisterPageState extends State<RegisterPage> {
       if (radioItemGender == "") {
         setState(() {
           errorGender = errorblank;
-        });
-      }
-      if (age == "") {
-        setState(() {
-          errorAge = errorblank;
         });
       }
       if (phoneNo == "") {
@@ -389,7 +378,6 @@ class _RegisterPageState extends State<RegisterPage> {
           duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
     } else {
       if (errorName == "" &&
-          errorAge == "" &&
           errorMobile == "" &&
           errorPass == "" &&
           errorCode == "") {
@@ -607,69 +595,6 @@ class _RegisterPageState extends State<RegisterPage> {
                               padding: const EdgeInsets.only(left: 85.0),
                               child: Text(
                                 errorMobile,
-                                style: TextStyle(color: Colors.red),
-                              ),
-                            )
-                          : Container()),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: 35, top: 15, right: 35, bottom: 10),
-                        child: Center(
-                          child: Container(
-                            height: 55,
-                            child: TextField(
-                                maxLength: 2,
-                                inputFormatters: <TextInputFormatter>[
-                                  WhitelistingTextInputFormatter.digitsOnly,
-                                ],
-                                keyboardType: TextInputType.numberWithOptions(
-                                    decimal: true),
-                                decoration: InputDecoration(
-                                    hintStyle: GoogleFonts.poppins(
-                                        color: Color.fromARGB(
-                                            0xff, 0x1d, 0x22, 0x26),
-                                        fontSize: 14),
-                                    counterText: "",
-                                    focusedBorder: new OutlineInputBorder(
-                                        borderRadius: const BorderRadius.all(
-                                          const Radius.circular(10.0),
-                                        ),
-                                        borderSide: BorderSide(
-                                          color: Colors.white70,
-                                        )),
-                                    enabledBorder: new OutlineInputBorder(
-                                      borderRadius: const BorderRadius.all(
-                                        const Radius.circular(10.0),
-                                      ),
-                                      borderSide: BorderSide(
-                                        color: Colors.white70,
-                                      ),
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.white70,
-                                    prefixIcon: Icon(Icons.refresh),
-                                    hintText: 'Age'),
-                                onChanged: (value) {
-                                  this.age = value.trim();
-
-                                  if (int.parse(age) < 18) {
-                                    setState(() {
-                                      errorAge = "Age must be 18 or older";
-                                    });
-                                  } else {
-                                    setState(() {
-                                      errorAge = "";
-                                    });
-                                  }
-                                }),
-                          ),
-                        ),
-                      ),
-                      (errorAge != ''
-                          ? Padding(
-                              padding: const EdgeInsets.only(left: 85.0),
-                              child: Text(
-                                errorAge,
                                 style: TextStyle(color: Colors.red),
                               ),
                             )

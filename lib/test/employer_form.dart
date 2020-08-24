@@ -39,7 +39,6 @@ class Radiobutton extends StatefulWidget {
   Radiobutton(String work, String phoneNo) {
     this.work = work;
     this.phoneNo = phoneNo;
-
   }
 
   @override
@@ -74,7 +73,7 @@ class RadioButtonWidget extends State {
   }
 
   void createRecord() async {
-    print("createRecord"+phoneNo);
+    print("createRecord" + phoneNo);
 
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('kk:mm:ss EEE d MMM yyyy').format(now);
@@ -152,7 +151,6 @@ class RadioButtonWidget extends State {
       sendMail(email, datasnapshot.data['Name'].toString());
       sendMailEmployerAdmin(
           datasnapshot.data['Name'].toString(),
-          datasnapshot.data['Age'].toString(),
           datasnapshot.data['Gender'].toString(),
           phoneNo1,
           datasnapshot.data['city'].toString(),
