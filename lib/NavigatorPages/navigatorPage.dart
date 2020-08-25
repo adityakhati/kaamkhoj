@@ -50,8 +50,8 @@ class NavigatorPage extends StatefulWidget {
 }
 
 class NavigatorPageState extends State<NavigatorPage> {
-  String name = "";
-  String phoneNo="";
+  String name = " ";
+  String phoneNo=" ";
 
   bool logot_select = false;
 

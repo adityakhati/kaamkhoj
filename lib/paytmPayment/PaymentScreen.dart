@@ -269,7 +269,7 @@ class PaymentSuccessfulScreenState extends State<PaymentSuccessfulScreen> {
 
     String documentPath = documentDirectory.path;
 
-    File file = File("$documentPath/example.pdf");
+    File file = File("$documentPath/receipt.pdf");
 
     file.writeAsBytesSync(pdf.save());
   }
@@ -351,7 +351,7 @@ class PaymentSuccessfulScreenState extends State<PaymentSuccessfulScreen> {
 
     Directory documentDirectory = await getApplicationDocumentsDirectory();
     String documentPath = documentDirectory.path;
-    File file = File("$documentPath/example.pdf");
+    File file = File("$documentPath/receipt.pdf");
 
     DocumentReference documentReference =
         databaseReference.collection("data").document(phoneNo);
